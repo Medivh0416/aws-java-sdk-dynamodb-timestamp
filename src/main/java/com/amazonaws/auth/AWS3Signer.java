@@ -68,8 +68,12 @@ public class AWS3Signer extends AbstractAWSSigner {
         boolean isHttps = false;
 
         if (overriddenDate != null) date = overriddenDate;
+        //inefficient, but whatever
+        if (request.getHeaders().containsKey("X-Amz-Date")) date = request.getHeaders().get("X-Amz-Date");
         request.addHeader("Date", date);
         request.addHeader("X-Amz-Date", date);
+
+        System.out.println(date);
 
         // AWS3 HTTP requires that we sign the Host header
         // so we have to have it in the request by the time we sign.

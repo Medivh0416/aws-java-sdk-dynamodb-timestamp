@@ -50,6 +50,10 @@ public class PutItemRequestMarshaller implements Marshaller<Request<PutItemReque
         request.addHeader("Content-Type", "application/x-amz-json-1.0");
         request.setHttpMethod(POST);
 
+        if (putItemRequest.getTimestamp() != null) {
+            request.addHeader("X-Amz-Date", putItemRequest.getTimestamp());
+        }
+
         try {
         	StringWriter stringWriter = new StringWriter();
         	JSONWriter jsonWriter = new JSONWriter(stringWriter);

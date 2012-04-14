@@ -33,6 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  */
 public class PutItemRequest extends AmazonWebServiceRequest {
 
+    private String timestamp;
+
     /**
      * The name of the table in which you want to put an item. Allowed
      * characters are <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>,
@@ -170,8 +172,7 @@ public class PutItemRequest extends AmazonWebServiceRequest {
         this.tableName = tableName;
         return this;
     }
-    
-    
+
     /**
      * A map of the attributes for the item, and must include the primary key
      * values that define the item. Other attribute name-value pairs can be
@@ -492,6 +493,20 @@ public class PutItemRequest extends AmazonWebServiceRequest {
         this.returnValues = returnValues.toString();
         return this;
     }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+        return;
+    }
+
+    public PutItemRequest withTimestamp(String timestamp) {
+        this.setTimestamp(timestamp);
+        return this;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
     
     /**
      * Returns a string representation of this object; useful for testing and
@@ -509,6 +524,7 @@ public class PutItemRequest extends AmazonWebServiceRequest {
         if (item != null) sb.append("Item: " + item + ", ");
         if (expected != null) sb.append("Expected: " + expected + ", ");
         if (returnValues != null) sb.append("ReturnValues: " + returnValues + ", ");
+        if (timestamp != null) sb.append("Timestamp: "+timestamp + ", ");
         sb.append("}");
         return sb.toString();
     }
@@ -522,6 +538,7 @@ public class PutItemRequest extends AmazonWebServiceRequest {
         hashCode = prime * hashCode + ((getItem() == null) ? 0 : getItem().hashCode()); 
         hashCode = prime * hashCode + ((getExpected() == null) ? 0 : getExpected().hashCode()); 
         hashCode = prime * hashCode + ((getReturnValues() == null) ? 0 : getReturnValues().hashCode()); 
+        hashCode = prime * hashCode + ((getTimestamp() == null) ? 0 : getTimestamp().hashCode()); 
         return hashCode;
     }
     
@@ -541,6 +558,11 @@ public class PutItemRequest extends AmazonWebServiceRequest {
         if (other.getExpected() != null && other.getExpected().equals(this.getExpected()) == false) return false; 
         if (other.getReturnValues() == null ^ this.getReturnValues() == null) return false;
         if (other.getReturnValues() != null && other.getReturnValues().equals(this.getReturnValues()) == false) return false; 
+
+        if (other.getTimestamp() == null ^ this.getTimestamp() == null) return false;
+        if (other.getTimestamp() != null && other.getTimestamp().equals(this.getTimestamp()) == false) return false; 
+
+
         return true;
     }
     
